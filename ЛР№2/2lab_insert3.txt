@@ -1,0 +1,40 @@
+DELIMITER //
+CREATE PROCEDURE create_records(in counts int(5))
+BEGIN
+	SET @allowedChars1 = 'A';
+	SET @allowedChars2 = 'B';
+	SET @allowedChars3 = 'C';
+	SET @allowedChars4 = 'D';
+	SET @allowedChars5 = 'E';
+	SET @allowedChars6 = 'F';
+	SET @allowedChars7 = 'G';
+	SET @allowedChars8 = 'H';
+	SET @allowedChars9 = 'I';
+	SET @allowedChars0 = '';
+    	SET @allowedNumber = '0123456789';
+    	set @n = 1;
+	label1: while @n<@counts DO
+    	
+        SET @allowedChars0 = @allowedChars1;
+        SET @allowedChars1 = @allowedChars2;
+        SET @allowedChars2 = @allowedChars3;
+        SET @allowedChars3 = @allowedChars4;
+        SET @allowedChars4 = @allowedChars5;
+        SET @allowedChars5 = @allowedChars6;
+        SET @allowedChars6 = @allowedChars7;
+        SET @allowedChars7 = @allowedChars8;
+        SET @allowedChars8 = @allowedChars9;
+        SET @allowedChars9 = @allowedChars0;
+    	SET @allowedNumber = '123456789';
+    	set @n = 1;
+        set @r_name = CONCAT('', @allowedChars1);
+	set @r_description = CONCAT('',@allowedChars2);
+        set @r_s_description = CONCAT('',@allowedChars3);
+	set @r_id_category =  FLOOR(RAND()*(6-1+1)+1);
+        set @r_id_producing_country  = FLOOR(RAND()*(5-1+1)+1);
+        set @r_price  = FLOOR(RAND()*(100000-100+1)+100);
+        INSERT INTO product(name,id_category,id_producing_country,s_description,description,price)VALUES(@r_name,@r_id_category,@r_id_producing_country,@r_s_description,@r_description,@r_price);
+        set @n = @n + 1;
+    END WHILE label1;
+end
+end //

@@ -1,0 +1,16 @@
+DELIMITER //
+CREATE FUNCTION CalcCost ( starting_value INT )
+RETURNS INT
+BEGIN
+ 
+   DECLARE cost INT;
+ 
+   SET cost = 0;
+ 
+   label1: WHILE cost <= 3000 DO
+     SET cost = cost + starting_value;
+   END WHILE label1;
+   SELECT cost;
+   RETURN cost;
+ 
+END //
